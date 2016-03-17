@@ -21,14 +21,17 @@ RUN apk upgrade --update \
  && rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/* \
     /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man \
     /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
- && apk search --update \
- && npm install -g pm2@latest
+ && apk search --update
+
+RUN npm install -g pm2@latest
 
 COPY pm2_init /pm2_init
 RUN chmod 755 /pm2_init
 
 RUN mkdir -p /opt/app
 VOLUME ["/opt/app"]
-WORKDIR ["/opt/app"]
+WORKDIR /opt/app
+
+EXPOSE 80
 
 CMD ["/pm2_init"]
