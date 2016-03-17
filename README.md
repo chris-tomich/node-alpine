@@ -41,3 +41,6 @@ apk add --update make gcc g++ python linux-header
 ## License
 
 [MIT](LICENSE)
+
+[docker-img]: https://img.shields.io/badge/docker-ready-blue.svg
+[docker-url]: https://hub.docker.com/r/christomich/node-pm2-alpine/
