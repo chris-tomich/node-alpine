@@ -1,7 +1,6 @@
 # node-pm2-alpine
 
 [![Docker Hub Link][docker-img]][docker-url]
-[![](https://badge.imagelayers.io/irakli/node-alpine:latest.svg)](https://imagelayers.io/?images=irakli/node-alpine:latest 'Node Alpine on Docker Hub')
 
 Alpine-Linux-based, tiny Docker-container for Node.JS and PM2, forked from inadarei's original at https://github.com/inadarei/node-alpine.
 
