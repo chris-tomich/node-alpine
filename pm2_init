@@ -1,16 +1,8 @@
 #! /bin/sh
+# From dashersw @ https://github.com/dashersw/docker-node-pm2
 
-env > /etc/envvars
+if [ -z "$APP" ]; then
+    export APP=app.js
+fi
 
-for script in /etc/runit_init.d/*
-do
-    echo >&2 "*** Running: $x"
-    $x
-    retval=$?
-    if [ $retval -ne 0 ];
-    then
-        echo >&2 "*** Failed with return value: $?"
-        exit $retval
-    fi
-done
-exec /sbin/runsvdir -P /etc/service
+pm2 start -x $APP --no-daemon

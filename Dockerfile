@@ -1,9 +1,9 @@
 FROM alpine:3.3
-MAINTAINER Irakli Nadareishvili
+MAINTAINER Chris Tomich
 
-ENV NODE_VERSION=v0.12.11
+ENV NODE_VERSION=v4.4.0
 
-ENV REFRESHED_AT 2016-03-03-21_30EST
+ENV REFRESHED_AT 2016-03-17-10_45AWST
 
 RUN apk upgrade --update \
  && apk add curl make gcc g++ linux-headers paxctl musl-dev \
@@ -21,14 +21,14 @@ RUN apk upgrade --update \
  && rm -rf /root/src /tmp/* /usr/share/man /var/cache/apk/* \
     /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man \
     /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html \
- && apk search --update
+ && apk search --update \
+ && npm install -g pm2@latest
 
+COPY pm2_init /pm2_init
+RUN chmod 755 /pm2_init
 
-### RUNIT
+RUN mkdir -p /opt/app
+VOLUME ["/opt/app"]
+WORKDIR ["/opt/app"]
 
-# RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-#  && apk --update upgrade && apk add runit && rm -rf /var/cache/apk/* && apk --update search
-# ADD runit_init /sbin/
-# RUN chmod u+x /sbin/runit_init
-#
-# CMD ["/sbin/runit_init"]
+CMD ["/pm2_init"]

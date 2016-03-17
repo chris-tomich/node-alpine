@@ -7,9 +7,13 @@ Alpine-Linux-based, tiny Docker-container for Node, striving for perfection
 
 Compare 56MB of this container with typical 500MB to 800MB sizes you get with Ubuntu- or CentOS-based images.
 
-### Runit Support
+This version deploys the v4.4.0LTS release of Node.JS.
 
-In most production deployments we would like a process monitor to restart our node service if it ever shuts down. On Alpine Linux such lightweight process monitor is: [runit](http://smarden.org/runit/), which you can install by using one of the *-runit tagged builds.
+### PM2 Support
+
+This fork deploys PM2 for process management. The original release provided by inadarei deploys runit for process management.
+
+A volume is mapped to /opt/app/
 
 ## Adding More Packages (if needed)
 
